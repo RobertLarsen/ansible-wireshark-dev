@@ -16,6 +16,7 @@
   - gnutls-dev
   - libc-ares-dev
   - libcap2-dev
+  - libjson-glib-dev
   - libgcrypt20-dev
   - libglib2.0-dev
   - libkrb5-dev
