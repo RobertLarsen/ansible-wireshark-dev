@@ -1,4 +1,5 @@
 galaxy_info:
+  role_name: wireshark-dev
   author: Robert Larsen <robert@the-playground.dk>
   description: Installs all libraries and tools needed for compiling Wireshark from source
   company:
