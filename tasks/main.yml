@@ -12,6 +12,7 @@
   - ddd
   - doxygen
   - flex
+  - git
   - gnutls-dev
   - libc-ares-dev
   - libcap2-dev
