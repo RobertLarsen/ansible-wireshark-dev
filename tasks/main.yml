@@ -1,0 +1,81 @@
+---
+- name: Install packages
+  become: true
+  apt:
+    name: "{{item}}"
+  with_items:
+  - asciidoctor
+  - automake
+  - autoconf
+  - bison
+  - cmake
+  - ddd
+  - doxygen
+  - flex
+  - gnutls-dev
+  - libc-ares-dev
+  - libcap2-dev
+  - libgcrypt20-dev
+  - libglib2.0-dev
+  - libkrb5-dev
+  - liblua5.2-dev
+  - liblz4-dev
+  - libmaxminddb-dev
+  - libnghttp2-dev
+  - libnl-3-dev
+  - libnl-genl-3-dev
+  - libnl-route-3-dev
+  - libpcap-dev
+  - libqt5svg5-dev
+  - libsbc-dev
+  - libsmi2-dev
+  - libsnappy-dev
+  - libspandsp-dev
+  - libssh-dev
+  - libxml2-dev
+  - ninja-build
+  - qtbase5-dev
+  - qtmultimedia5-dev
+  - qttools5-dev-tools
+  - xsltproc
+
+- name: Install qt5 dev tools
+  when: ansible_distribution == "Ubuntu" and ansible_distribution_major_version == "18"
+  become: true
+  apt:
+      name: qttools5-dev
+
+- name: Have a hidden repo directory
+  file:
+      path: "{{repository_path}}"
+      state: directory
+
+- name: Have the bcg729 library code
+  git:
+      repo: git://git.linphone.org/bcg729.git
+      dest: "{{bcg729_path}}"
+
+- name: Autogen bcg729 library
+  command: ./autogen.sh
+  args:
+      chdir: "{{bcg729_path}}"
+      creates: "{{bcg729_path}}/configure"
+
+- name: Configure bcg729 library
+  command: ./configure
+  args:
+      chdir: "{{bcg729_path}}"
+      creates: "{{bcg729_path}}/Makefile"
+
+- name: Build bcg729 library
+  command: make
+  args:
+      chdir: "{{bcg729_path}}"
+      creates: "{{bcg729_path}}/src/.libs/libbcg729.so"
+
+- name: Install bcg729 library
+  become: true
+  command: make install
+  args:
+      chdir: "{{bcg729_path}}"
+      creates: "/usr/local/lib/libbcg729.so"
