@@ -2,44 +2,43 @@
 - name: Install packages
   become: true
   apt:
-    name: "{{item}}"
-  with_items:
-  - asciidoctor
-  - automake
-  - autoconf
-  - bison
-  - cmake
-  - ddd
-  - doxygen
-  - flex
-  - git
-  - gnutls-dev
-  - libc-ares-dev
-  - libcap2-dev
-  - libjson-glib-dev
-  - libgcrypt20-dev
-  - libglib2.0-dev
-  - libkrb5-dev
-  - liblua5.2-dev
-  - liblz4-dev
-  - libmaxminddb-dev
-  - libnghttp2-dev
-  - libnl-3-dev
-  - libnl-genl-3-dev
-  - libnl-route-3-dev
-  - libpcap-dev
-  - libqt5svg5-dev
-  - libsbc-dev
-  - libsmi2-dev
-  - libsnappy-dev
-  - libspandsp-dev
-  - libssh-dev
-  - libxml2-dev
-  - ninja-build
-  - qtbase5-dev
-  - qtmultimedia5-dev
-  - qttools5-dev-tools
-  - xsltproc
+      name:
+      - asciidoctor
+      - automake
+      - autoconf
+      - bison
+      - cmake
+      - ddd
+      - doxygen
+      - flex
+      - git
+      - gnutls-dev
+      - libc-ares-dev
+      - libcap2-dev
+      - libjson-glib-dev
+      - libgcrypt20-dev
+      - libglib2.0-dev
+      - libkrb5-dev
+      - liblua5.2-dev
+      - liblz4-dev
+      - libmaxminddb-dev
+      - libnghttp2-dev
+      - libnl-3-dev
+      - libnl-genl-3-dev
+      - libnl-route-3-dev
+      - libpcap-dev
+      - libqt5svg5-dev
+      - libsbc-dev
+      - libsmi2-dev
+      - libsnappy-dev
+      - libspandsp-dev
+      - libssh-dev
+      - libxml2-dev
+      - ninja-build
+      - qtbase5-dev
+      - qtmultimedia5-dev
+      - qttools5-dev-tools
+      - xsltproc
 
 - name: Install qt5 dev tools
   when: ansible_distribution == "Ubuntu" and ansible_distribution_major_version == "18"
