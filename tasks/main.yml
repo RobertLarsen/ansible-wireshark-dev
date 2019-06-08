@@ -13,6 +13,7 @@
       - flex
       - git
       - gnutls-dev
+      - libbrotli-dev
       - libc-ares-dev
       - libcap2-dev
       - libjson-glib-dev
@@ -32,7 +33,9 @@
       - libsmi2-dev
       - libsnappy-dev
       - libspandsp-dev
+      - libspeexdsp-dev
       - libssh-dev
+      - libsystemd-dev
       - libxml2-dev
       - ninja-build
       - qtbase5-dev
