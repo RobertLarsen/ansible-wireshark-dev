@@ -52,31 +52,7 @@
       state: directory
 
 - name: Have the bcg729 library code
+  notify: Autogen bcg729 library
   git:
       repo: git://git.linphone.org/bcg729.git
       dest: "{{bcg729_path}}"
-
-- name: Autogen bcg729 library
-  command: ./autogen.sh
-  args:
-      chdir: "{{bcg729_path}}"
-      creates: "{{bcg729_path}}/configure"
-
-- name: Configure bcg729 library
-  command: ./configure
-  args:
-      chdir: "{{bcg729_path}}"
-      creates: "{{bcg729_path}}/Makefile"
-
-- name: Build bcg729 library
-  command: make
-  args:
-      chdir: "{{bcg729_path}}"
-      creates: "{{bcg729_path}}/src/.libs/libbcg729.so"
-
-- name: Install bcg729 library
-  become: true
-  command: make install
-  args:
-      chdir: "{{bcg729_path}}"
-      creates: "/usr/local/lib/libbcg729.so"
