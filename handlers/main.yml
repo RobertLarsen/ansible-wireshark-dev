@@ -1,17 +1,10 @@
 ---
 - name: Autogen bcg729 library
-  notify: Configure bcg729 library
-  command: ./autogen.sh
+  notify: Install bcg729 library
+  command: cmake .
   args:
       chdir: "{{bcg729_path}}"
       creates: "{{bcg729_path}}/configure"
-
-- name: Configure bcg729 library
-  notify: Build bcg729 library
-  command: ./configure
-  args:
-      chdir: "{{bcg729_path}}"
-      creates: "{{bcg729_path}}/Makefile"
 
 - name: Build bcg729 library
   notify: Install bcg729 library
